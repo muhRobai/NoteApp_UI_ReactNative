@@ -13,7 +13,10 @@ export default class Note extends Component {
     constructor(props) {
     super(props);
     this.state = {
-      selected: undefined
+      selected: undefined,
+      title: this.props.navigation.state.params.title,
+      body: this.props.navigation.state.params.note,
+      category: this.props.navigation.state.params.category,
     };
       }
       onValueChange(value: string) {
@@ -22,19 +25,20 @@ export default class Note extends Component {
         });
       }
 
-  dummycategory = () => {
-    let dummydata = []
-    for(let i = 0; i < dummycategory.length; i++){
-      dummydata.push(
-          <Picker.Item key={i} label={dummycategory[i].category} value={dummycategory[i].category}/>
-      )
-    }
-    return dummydata;
+      dummycategory = () => {
+        let dummydata = []
+        for(let i = 0; i < dummycategory.length; i++){
+          dummydata.push(
+              <Picker.Item key={i} label={dummycategory[i].category} value={dummycategory[i].category}/>
+          )
+        }
+        return dummydata;
 
-  }
+      }
 
-
-
+   componentDidMount(){
+     console.warn(this.state.category);
+   }
   render() {
     return (
       <Container>
@@ -45,7 +49,7 @@ export default class Note extends Component {
             </Button> 
         </Left>
         <Body style={{flex:1}}>
-            <Title style={{color: '#000'}}>ADD NOTE</Title>
+            <Title style={{color: '#000'}}>EDIT NOTE</Title>
         </Body>
         <Right style={{flex:1}}>
             <Button transparent onPress= {() => this.props.navigation.openDrawer()} style={{padding: 10}}>
@@ -55,8 +59,8 @@ export default class Note extends Component {
       </Header>
         <Content>
             <Form>
-                <Input placeholder="ADD TITLE..." placeholderIconColor='#ecf0f1' style={styles.textStyle}/>
-                <Textarea rowSpan={12} placeholder="ADD DESCRIPTION..."style={styles.textAreaStyle}/>
+                <Input value={this.state.title} placeholderIconColor='#ecf0f1' style={styles.textStyle}/>
+                <Textarea rowSpan={12} value={this.state.body} style={styles.textAreaStyle}/>
                 <Label style={styles.labelstyle}>Category</Label>
                 <Picker
                   mode="dropdown"
@@ -65,7 +69,7 @@ export default class Note extends Component {
                   placeholderStyle={{ color: "#bfc6ea" }}
                   placeholderIconColor="#007aff"
                   style={styles.pickerStyle}
-                  selectedValue={this.state.selected}
+                  selectedValue={this.state.category}
                   onValueChange={this.onValueChange.bind(this)}>
                   {this.dummycategory()}
                 </Picker>
