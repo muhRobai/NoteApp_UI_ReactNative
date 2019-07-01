@@ -6,7 +6,6 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import Note from "./Screen/Note";
 import Home from "./Screen/Home";
 import editNote from "./Screen/editNote";
-import addCategory from "./Screen/addNote";
 import Costumside from "./component/Costumside";
 
 const AppNavigator = createStackNavigator(

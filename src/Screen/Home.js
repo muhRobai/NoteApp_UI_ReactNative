@@ -75,13 +75,17 @@ constructor(props) {
             renderItem={({item, index}) =>
             <TouchableOpacity style={{
               flex: 1,
-              marginBottom: 10,
-              paddingright: 10
-
+              paddingLeft: 10
             }}
             onPress={()=> this.props.navigation.navigate('Edit', item)}
             >
-            <View style={{ backgroundColor: item.code,borderRadius: 7, margin: 5}}>
+            <View style={{
+              backgroundColor: 
+              item.category.toLowerCase() == "school" ? "#1abc9c" :
+              item.category.toLowerCase() == "technology" ? "#27ae60" :
+              item.category.toLowerCase() == "lifestyle" ? "#1abc9c" :
+              item.category.toLowerCase() == "sport" ? "#f39c12" :
+              "#fff", borderRadius: 7, margin: 7}}>
                 <View>
                   <Text style={styles.itemDate}>{item.time}</Text>
                 </View>
@@ -117,40 +121,49 @@ constructor(props) {
           }}
             onPress={() => {this.setModalVisible(!this.state.modalVisible); }}
             >
-            <View style={{
-              marginTop: 22,
-              position: 'absolute',
-              right: '2%',
-              top:'6%',
-              backgroundColor: '#fff'
-            }}>
+            <View style={
+              {flex:1} 
+            }>
+            <TouchableOpacity
+                  activeOpacity={1}
+                  onPress={() => this.setModalVisible(!this.state.modalVisible)}
+                  style={{ position:'absolute', top:0,bottom:0,right:0,left:0, }}
+                />
               <View style={{
-                paddingBottom: 20,
-                paddingTop: 20,
-                paddingLeft: 20,
-                paddingRight: 20,
-                borderRadius: 7
+                marginTop: 22,
+                position: 'absolute',
+                right: '2%',
+                top:'6%',
+                backgroundColor: '#fff'
               }}>
-                  <TouchableHighlight
-                    onPress={() => {
-                      this.setModalVisible(!this.state.modalVisible);
-                  }}>
-                  <Text style={{fontSize: 14}}>ASCENDING</Text>
-                </TouchableHighlight>
-                
-              </View>
-              <View style={{
-                paddingBottom: 20,
-                paddingTop: 20,
-                paddingLeft: 20,
-                paddingRight: 20,
-                borderRadius: 7
-              }}>
-                <TouchableHighlight onPress={() => {
-                      this.setModalVisible(!this.state.modalVisible);
-                  }}>
-                  <Text style={{fontSize: 14}}>DESCENDING</Text>
-                </TouchableHighlight>
+                <View style={{
+                  paddingBottom: 20,
+                  paddingTop: 20,
+                  paddingLeft: 20,
+                  paddingRight: 20,
+                  borderRadius: 7
+                }}>
+                    <TouchableHighlight
+                      onPress={() => {
+                        this.setModalVisible(!this.state.modalVisible);
+                    }}>
+                    <Text style={{fontSize: 14}}>ASCENDING</Text>
+                  </TouchableHighlight>
+                  
+                </View>
+                <View style={{
+                  paddingBottom: 20,
+                  paddingTop: 20,
+                  paddingLeft: 20,
+                  paddingRight: 20,
+                  borderRadius: 7
+                }}>
+                  <TouchableHighlight onPress={() => {
+                        this.setModalVisible(!this.state.modalVisible);
+                    }}>
+                    <Text style={{fontSize: 14}}>DESCENDING</Text>
+                  </TouchableHighlight>
+                </View>
               </View>
             </View>
           </Modal>
@@ -162,14 +175,16 @@ constructor(props) {
 const styles = StyleSheet.create({
   gridView: {
     marginTop: 5,
+    marginLeft: 20,
+    marginRight: 20,
     flex: 1
   },
   itemContainer: {
     justifyContent: 'flex-end',
     borderRadius: 5,
-    padding: 10,
+    padding: 5,
     marginBottom: 5,
-    marginTop: 10
+    marginTop: 10,
   },
   itemTitle: {
     fontSize: 15,

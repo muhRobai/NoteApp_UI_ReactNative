@@ -70,14 +70,15 @@ export default class Costumside extends Component{
 			      			<ListItem
 			      				noBorder
 			      				onPress={()=> this.props.navigation.navigate(data.name)}
+			      				style={{margin: -5}}
 			      			>
 			      				<Left>
 			      					<Icon 
 			      						name={data.icon}
-			      						style={{ color: '#777',fontSize: 28, width: 38}}
+			      						style={{ color: '#000',fontSize: 28, width: 38}}
 
 			      					/>
-			      					<Text style={{fontSize: 18}}>{data.name}</Text>
+			      					<Text style={{fontSize: 18, color: '#000000', fontWeight:"500"}}>{data.name}</Text>
 			      				</Left>
 			      			</ListItem>
 			      		);
@@ -95,9 +96,9 @@ export default class Costumside extends Component{
 			      		<Left>
 			      			<Icon
 			      				name={'plus-circle'}
-			      				style={{fontSize: 28, width: 38}}
+			      				style={{fontSize: 28, width: 38, color:'#000', marginTop: -5}}
 			      			/>
-			      			<Text style={{fontSize: 18}}>Add Category</Text>
+			      			<Text style={{fontSize: 18, color: '#000000', fontWeight:"500"}}>Add Category</Text>
 			      		</Left>
 			      	</ListItem>
 			      </List>
@@ -118,6 +119,11 @@ export default class Costumside extends Component{
 		              alignItems: 'center'
 
 		            }}>
+		            	<TouchableOpacity
+			                activeOpacity={1}
+			                onPress={() => this.setModalVisible(!this.state.modalVisible)}
+			                style={{ position:'absolute', top:0,bottom:0,right:0,left:0, }}
+			              />
 			            <View style={{
 	            			  width: "70%",
 			                  height: 150,
@@ -128,6 +134,7 @@ export default class Costumside extends Component{
 			                  borderRadius: 5,
 			                  elevetion: 3
 				          }}>
+				           
 				            	<View>
 				            		<TextInput placeholder="add category" placeholderColor='#eee' style={{marginLeft: 20, marginRight:20, paddingLeft: 20,borderBottomColor: '#2ED1A2',
 				            		borderBottomWidth: 2}} onChangeText={(text) => this.setState({nameCategory:text})}/>	            		
@@ -170,11 +177,12 @@ const styles = StyleSheet.create({
   },
   drawerHeader: {
     height: 200,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    marginBottom: 10
   },
   Image: {
-    height: 85,
-    width: 86,
+    height: 120,
+    width: 120,
     borderRadius: 54
   },
   ImageSide:{
